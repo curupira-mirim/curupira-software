@@ -50,10 +50,10 @@ img {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  width: min(100% - 32px, var(--max));
+  width: 100%;
   margin: 0 auto;
-  padding: 18px 0;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  padding: 18px max(16px, calc((100% - var(--max)) / 2));
+  background: rgba(4, 52, 21, 0.96);
   backdrop-filter: blur(18px);
 }
 
@@ -64,6 +64,7 @@ img {
   min-width: 0;
   font-weight: 800;
   letter-spacing: 0;
+  color: var(--white);
 }
 
 .brand-mark {
@@ -83,7 +84,7 @@ img {
 .nav a {
   min-height: 40px;
   padding: 10px 14px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.76);
   border-radius: 8px;
   font-size: 0.94rem;
   font-weight: 700;
@@ -91,20 +92,24 @@ img {
 
 .nav a:hover,
 .nav a:focus-visible {
-  color: var(--green-900);
-  background: rgba(27, 94, 32, 0.1);
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
   outline: none;
 }
 
 .hero {
+  width: 100%;
+  max-width: none;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
   gap: clamp(32px, 6vw, 86px);
   align-items: center;
-  width: min(100% - 32px, var(--max));
   min-height: min(780px, calc(92svh - 92px));
   margin: 0 auto;
-  padding: clamp(34px, 5vw, 66px) 0 clamp(30px, 5vw, 56px);
+  padding: clamp(34px, 5vw, 66px) max(16px, calc((100% - var(--max)) / 2)) clamp(30px, 5vw, 56px);
+  background:
+    radial-gradient(circle at 88% 32%, rgba(255, 106, 0, 0.12), transparent 28%),
+    linear-gradient(180deg, #043415, #032c12);
 }
 
 .hero-content {
@@ -131,7 +136,7 @@ p {
 h1 {
   max-width: 780px;
   margin-bottom: 22px;
-  color: var(--green-950);
+  color: var(--white);
   font-size: clamp(3rem, 5.6vw, 5.45rem);
   line-height: 0.98;
   letter-spacing: 0;
@@ -154,7 +159,7 @@ h3 {
 .hero-copy {
   max-width: 650px;
   margin-bottom: 34px;
-  color: #38443a;
+  color: rgba(255, 255, 255, 0.76);
   font-size: clamp(1.04rem, 1.7vw, 1.25rem);
 }
 
@@ -183,19 +188,19 @@ h3 {
 }
 
 .button.primary {
-  color: var(--white);
-  background: var(--green-brand);
+  color: var(--green-950);
+  background: var(--orange);
 }
 
 .button.primary:hover,
 .button.primary:focus-visible {
-  background: var(--green-900);
+  background: var(--gold-soft);
 }
 
 .button.secondary {
-  color: var(--green-950);
-  border-color: rgba(27, 94, 32, 0.18);
-  background: rgba(255, 255, 255, 0.72);
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .hero-visual {
@@ -204,7 +209,9 @@ h3 {
   overflow: hidden;
   border-radius: 8px;
   background: var(--green-950);
-  box-shadow: 0 30px 90px rgba(2, 28, 12, 0.18);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.26),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
   isolation: isolate;
 }
 
@@ -608,7 +615,8 @@ h3 {
   .site-header {
     align-items: flex-start;
     flex-direction: column;
-    padding: 14px 0;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
 
   .nav {
