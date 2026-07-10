@@ -497,12 +497,6 @@ h3 {
   flex: 0 0 auto;
 }
 
-.contact-actions span {
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 0.94rem;
-  font-weight: 700;
-}
-
 .contact .button {
   background: var(--orange);
 }
