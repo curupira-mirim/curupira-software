@@ -1,0 +1,10 @@
+{
+  "name": "curupira-software",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "lint": "node --check scripts/build.mjs && node --check scripts/seo-test.mjs",
+    "test": "npm run build && node scripts/seo-test.mjs"
+  }
+}
