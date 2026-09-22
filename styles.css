@@ -735,6 +735,15 @@ h3 {
 .lead-form-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; align-self: end; padding-top: 26px; }
 .lead-form-actions .button { min-width: 236px; }
 .lead-form [hidden] { display: none !important; }
+.lead-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.lead-form-status { margin: 12px 0 0; color: #a33b09; font-size: 14px; font-weight: 700; line-height: 1.45; }
+.lead-success { display: grid; align-content: center; min-height: 504px; max-width: 36ch; }
+.lead-success[hidden] { display: none; }
+.lead-success > p:first-child { margin-bottom: 14px; color: var(--flame-text); font-size: 13px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.lead-success h3 { margin-bottom: 14px; font-size: clamp(30px, 3.8vw, 42px); line-height: 1.05; }
+.lead-success > span { width: 42px; height: 3px; margin-bottom: 21px; border-radius: 99px; background: var(--flame); }
+.lead-success > p:not(:first-child) { color: var(--muted); font-size: 17px; line-height: 1.55; }
+.lead-success .button { width: fit-content; margin-top: 12px; }
 .text-button { min-height: 44px; padding: 8px 2px; border: 0; color: var(--muted); background: transparent; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; }
 .text-button:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -840,6 +849,8 @@ h3 {
   .lead-aside-label { margin-bottom: 8px; }
   .lead-dialog-body { padding: 22px; }
   .lead-form { min-height: 0; padding-top: 28px; }
+  .lead-success { min-height: 370px; }
+  .lead-success .button { width: 100%; }
   .lead-form-grid { grid-template-columns: 1fr; gap: 18px; }
   .lead-form-actions { align-items: stretch; flex-direction: column-reverse; }
   .lead-form-actions .button { width: 100%; }

@@ -238,7 +238,7 @@
           <a href="#cases">Cases</a>
           <a href="#metodo">Método</a>
           <a href="#fundador">Quem está à frente</a>
-          <a class="nav-cta" href="mailto:alisson.winter@curupirasoftware.com?subject=Quero%20conversar%20sobre%20meu%20neg%C3%B3cio" data-lead-dialog>Conversar sobre meu negócio</a>
+          <a class="nav-cta" href="#contato" data-lead-dialog>Conversar sobre meu negócio</a>
         </nav>
 
         <details class="menu">
@@ -252,7 +252,7 @@
             <a href="#cases">Cases</a>
             <a href="#metodo">Método</a>
             <a href="#fundador">Quem está à frente</a>
-            <a href="mailto:alisson.winter@curupirasoftware.com?subject=Quero%20conversar%20sobre%20meu%20neg%C3%B3cio" data-lead-dialog>Conversar sobre meu negócio</a>
+            <a href="#contato" data-lead-dialog>Conversar sobre meu negócio</a>
           </nav>
         </details>
       </div>
@@ -265,7 +265,7 @@
             <h1>Entendemos o negócio. Construímos o que faz ele avançar.</h1>
             <p class="lead">A Curupira lê o contexto, a cultura e os processos da sua empresa para conectar pessoas, dados e tecnologia. Do fluxo comercial ao financeiro, criamos a solução que a operação realmente precisa.</p>
             <div class="hero-actions">
-              <a class="button primary" href="mailto:alisson.winter@curupirasoftware.com?subject=Quero%20conversar%20sobre%20meu%20neg%C3%B3cio" data-lead-dialog>Conversar sobre meu negócio</a>
+              <a class="button primary" href="#contato" data-lead-dialog>Conversar sobre meu negócio</a>
               <a class="button secondary" href="#cases">Ver o que já construímos</a>
             </div>
             <p class="hero-note">Uma conversa começa pelo problema, não por uma ferramenta.</p>
@@ -429,7 +429,7 @@
             </p>
           </div>
           <div class="contact-actions">
-            <a class="button flame" href="mailto:alisson.winter@curupirasoftware.com?subject=Quero%20conversar%20sobre%20meu%20neg%C3%B3cio" data-lead-dialog>
+            <a class="button flame" href="#contato" data-lead-dialog>
               <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
                 <rect x="3.25" y="5.25" width="17.5" height="13.5" rx="2.25" stroke="currentColor" stroke-width="1.75"></rect>
                 <path d="m4.5 7.5 7.5 5.5 7.5-5.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -464,6 +464,9 @@
           </button>
         </div>
         <form class="lead-form" id="lead-form" novalidate>
+          <input name="website" class="lead-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input name="startedAt" type="hidden">
+          <input name="submissionId" type="hidden">
           <fieldset class="lead-step is-current" data-lead-step="1">
             <legend>Para começar, como falamos com você?</legend>
             <p class="lead-step-copy">Usamos isso para responder à sua conversa.</p>
@@ -502,7 +505,15 @@
             <button class="button flame" type="button" data-lead-next>Continuar</button>
             <button class="button flame" type="submit" data-lead-submit hidden>Enviar contexto para a Curupira</button>
           </div>
+          <p class="lead-form-status" role="status" aria-live="polite" hidden></p>
         </form>
+        <section class="lead-success" hidden aria-labelledby="lead-success-title">
+          <p>Contexto enviado</p>
+          <h3 id="lead-success-title">Recebemos sua mensagem.</h3>
+          <span aria-hidden="true"></span>
+          <p>O próximo passo agora é nosso. Vamos ler seu contexto e responder pelo e-mail informado.</p>
+          <button class="button flame" type="button" data-dialog-close>Fechar</button>
+        </section>
       </div>
     </dialog>
 
@@ -551,6 +562,9 @@
       const leadTriggers = document.querySelectorAll('[data-lead-dialog]');
       const closeLeadDialog = () => leadDialog?.close();
       const leadForm = document.querySelector('#lead-form');
+      const leadSuccess = document.querySelector('.lead-success');
+      const leadStatus = document.querySelector('.lead-form-status');
+      const leadSubmit = leadForm?.querySelector('[data-lead-submit]');
       let currentLeadStep = 1;
 
       const setLeadStep = (step) => {
@@ -566,7 +580,9 @@
         leadForm?.querySelector('[data-lead-back]')?.toggleAttribute('hidden', step === 1);
         leadForm?.querySelector('[data-lead-next]')?.toggleAttribute('hidden', step === 3);
         leadForm?.querySelector('[data-lead-submit]')?.toggleAttribute('hidden', step !== 3);
-        leadDialog?.querySelector(`[data-lead-step="${step}"] input, [data-lead-step="${step}"] textarea, [data-lead-step="${step}"] select`)?.focus();
+        if (leadDialog?.open) {
+          leadDialog.querySelector(`[data-lead-step="${step}"] input, [data-lead-step="${step}"] textarea, [data-lead-step="${step}"] select`)?.focus();
+        }
       };
 
       const isLeadStepValid = (step) => {
@@ -574,12 +590,29 @@
         return [...fields].every((field) => field.reportValidity());
       };
 
+      const resetLeadForm = () => {
+        leadForm?.reset();
+        const startedAt = leadForm?.querySelector('[name="startedAt"]');
+        const submissionId = leadForm?.querySelector('[name="submissionId"]');
+        if (startedAt) startedAt.value = String(Date.now());
+        if (submissionId) submissionId.value = crypto.randomUUID();
+        leadForm?.removeAttribute('hidden');
+        leadSuccess?.setAttribute('hidden', '');
+        leadStatus?.setAttribute('hidden', '');
+        leadStatus && (leadStatus.textContent = '');
+        if (leadSubmit) {
+          leadSubmit.disabled = false;
+          leadSubmit.textContent = 'Enviar contexto para a Curupira';
+        }
+        setLeadStep(1);
+      };
+
       leadTriggers.forEach((trigger) => {
         trigger.addEventListener('click', (event) => {
           if (!leadDialog?.showModal) return;
           event.preventDefault();
           leadDialog.showModal();
-          setLeadStep(1);
+          resetLeadForm();
         });
       });
 
@@ -590,6 +623,8 @@
       leadDialog?.addEventListener('click', (event) => {
         if (event.target === leadDialog) closeLeadDialog();
       });
+
+      leadDialog?.addEventListener('close', resetLeadForm);
 
       leadForm?.querySelector('[data-lead-next]')?.addEventListener('click', () => {
         if (isLeadStepValid(currentLeadStep)) setLeadStep(currentLeadStep + 1);
@@ -603,28 +638,28 @@
         event.preventDefault();
         const form = event.currentTarget;
         if (!form.checkValidity()) return form.reportValidity();
-        const data = new FormData(form);
-        const line = (label, key) => `${label}: ${data.get(key)?.trim() || 'Não informado'}`;
-        const subject = `Novo contato — ${data.get('empresa')?.trim() || data.get('nome')?.trim()}`;
-        const body = [
-          'Olá, Curupira.',
-          '',
-          'Quero conversar sobre uma necessidade do meu negócio.',
-          '',
-          line('Nome', 'nome'),
-          line('E-mail', 'email'),
-          line('Empresa', 'empresa'),
-          line('Papel na empresa', 'cargo'),
-          line('Frente de interesse', 'frente'),
-          line('Como falar', 'contato'),
-          '',
-          'Onde o fluxo trava hoje:',
-          data.get('dor')?.trim(),
-          '',
-          'Enviado pelo site da Curupira Software.'
-        ].join('\n');
-        window.location.href = `mailto:alisson.winter@curupirasoftware.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        closeLeadDialog();
+        const payload = Object.fromEntries(new FormData(form));
+        leadSubmit.disabled = true;
+        leadSubmit.textContent = 'Enviando contexto…';
+        leadStatus.hidden = true;
+
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(async (response) => {
+            const result = await response.json().catch(() => ({}));
+            if (!response.ok) throw new Error(result.error || 'Não foi possível enviar agora.');
+            leadForm.hidden = true;
+            leadSuccess.hidden = false;
+          })
+          .catch((error) => {
+            leadStatus.textContent = error.message || 'Não foi possível enviar agora. Tente novamente.';
+            leadStatus.hidden = false;
+            leadSubmit.disabled = false;
+            leadSubmit.textContent = 'Enviar contexto para a Curupira';
+          });
       });
     </script>
   </body>
