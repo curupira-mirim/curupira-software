@@ -648,9 +648,8 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         })
-          .then(async (response) => {
-            const result = await response.json().catch(() => ({}));
-            if (!response.ok) throw new Error(result.error || 'Não foi possível enviar agora.');
+          .then((response) => {
+            if (!response.ok) throw new Error('Não foi possível enviar agora.');
             leadForm.hidden = true;
             leadSuccess.hidden = false;
           })
