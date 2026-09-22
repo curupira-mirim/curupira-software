@@ -5,7 +5,7 @@ const root = process.cwd();
 const dist = join(root, 'dist');
 const domain = 'https://curupirasoftware.com';
 const updated = '2026-09-22';
-const email = 'alisson.winter@curupirasoftware.com';
+const email = 'contato@curupirasoftware.com';
 const logo = `${domain}/assets/logo_minimalista_curupira.png`;
 
 const services = [
