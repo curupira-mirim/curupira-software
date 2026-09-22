@@ -442,44 +442,68 @@
     </main>
 
     <dialog class="lead-dialog" aria-labelledby="lead-dialog-title">
-      <div class="lead-dialog-head">
+      <aside class="lead-aside">
+        <img src="assets/logo_minimalista_curupira.png" alt="" width="1254" height="1254">
         <div>
-          <h2 id="lead-dialog-title">Vamos entender seu contexto.</h2>
-          <p>Com estas informações, a conversa já começa pelo que importa para sua operação.</p>
+          <p class="lead-aside-label">Primeira conversa</p>
+          <h2 id="lead-dialog-title">Conte o que está travando.</h2>
+          <p>Você não precisa saber qual tecnologia usar. Descreva a situação; a gente começa por ela.</p>
         </div>
-        <button class="dialog-close" type="button" aria-label="Fechar formulário" data-dialog-close>
-          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path></svg>
-        </button>
-      </div>
+        <ol class="lead-progress" aria-label="Etapas do formulário">
+          <li class="is-current" data-progress-step="1"><span>1</span> Você</li>
+          <li data-progress-step="2"><span>2</span> O desafio</li>
+          <li data-progress-step="3"><span>3</span> Contexto</li>
+        </ol>
+      </aside>
 
-      <form class="lead-form" id="lead-form">
-        <div class="lead-form-grid">
-          <label>Seu nome <span aria-hidden="true">*</span><input name="nome" autocomplete="name" required></label>
-          <label>Seu e-mail <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required></label>
-          <label>Empresa <input name="empresa" autocomplete="organization"></label>
-          <label>Seu papel na empresa <input name="cargo" autocomplete="organization-title" placeholder="Ex.: sócio, comercial, operações"></label>
+      <div class="lead-dialog-body">
+        <div class="lead-dialog-topline">
+          <p>Seu contexto</p>
+          <button class="dialog-close" type="button" aria-label="Fechar formulário" data-dialog-close>
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path></svg>
+          </button>
         </div>
-        <label>Onde o fluxo trava hoje? <span aria-hidden="true">*</span><textarea name="dor" rows="3" required placeholder="Conte a situação que você quer resolver."></textarea></label>
-        <div class="lead-form-grid">
-          <label>O que você quer melhorar primeiro?
-            <select name="frente">
-              <option value="Ainda estou entendendo">Ainda estou entendendo</option>
-              <option>Comercial, SDR ou CRM</option>
-              <option>Dados, integração ou BI</option>
-              <option>Automação de processos</option>
-              <option>IA aplicada à operação</option>
-              <option>Software ou produto sob medida</option>
-              <option>Financeiro ou contábil</option>
-            </select>
-          </label>
-          <label>Como podemos falar? <input name="contato" autocomplete="tel" placeholder="Telefone, WhatsApp ou melhor horário"></label>
-        </div>
-        <p class="lead-form-note">Ao continuar, abrimos seu aplicativo de e-mail com a mensagem organizada para envio à Curupira.</p>
-        <div class="lead-form-actions">
-          <button class="button primary" type="submit">Preparar e-mail para a Curupira</button>
-          <button class="text-button" type="button" data-dialog-close>Agora não</button>
-        </div>
-      </form>
+        <form class="lead-form" id="lead-form" novalidate>
+          <fieldset class="lead-step is-current" data-lead-step="1">
+            <legend>Para começar, como falamos com você?</legend>
+            <p class="lead-step-copy">Usamos isso para responder à sua conversa.</p>
+            <div class="lead-form-grid identity-fields">
+              <label>Seu nome <span aria-hidden="true">*</span><input name="nome" autocomplete="name" required placeholder="Seu nome"></label>
+              <label>Seu e-mail <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required placeholder="voce@empresa.com"></label>
+            </div>
+          </fieldset>
+          <fieldset class="lead-step" data-lead-step="2" hidden>
+            <legend>Onde o fluxo trava hoje?</legend>
+            <p class="lead-step-copy">Pode ser uma rotina, uma informação perdida ou uma etapa que consome tempo demais.</p>
+            <label class="lead-problem"><span class="sr-only">Descreva o desafio</span><textarea name="dor" rows="5" required placeholder="Ex.: os leads chegam, mas ninguém sabe quem responde; o time alimenta a mesma informação em vários lugares; não enxergamos o funil."></textarea></label>
+            <label>Por onde começamos?
+              <select name="frente">
+                <option value="Ainda estou entendendo">Ainda estou entendendo</option>
+                <option>Comercial, SDR ou CRM</option>
+                <option>Dados, integração ou BI</option>
+                <option>Automação de processos</option>
+                <option>IA aplicada à operação</option>
+                <option>Software ou produto sob medida</option>
+                <option>Financeiro ou contábil</option>
+              </select>
+            </label>
+          </fieldset>
+          <fieldset class="lead-step" data-lead-step="3" hidden>
+            <legend>Mais um pouco de contexto, se quiser.</legend>
+            <p class="lead-step-copy">Esses detalhes são opcionais. Eles ajudam a entender o ponto de partida.</p>
+            <div class="lead-form-grid detail-fields">
+              <label>Empresa <input name="empresa" autocomplete="organization" placeholder="Nome da empresa"></label>
+              <label>Seu papel na empresa <input name="cargo" autocomplete="organization-title" placeholder="Ex.: sócio, comercial, operações"></label>
+            </div>
+            <label>Telefone ou WhatsApp <input name="contato" autocomplete="tel" placeholder="(00) 00000-0000"></label>
+          </fieldset>
+          <div class="lead-form-actions">
+            <button class="text-button" type="button" data-lead-back hidden>Voltar</button>
+            <button class="button flame" type="button" data-lead-next>Continuar</button>
+            <button class="button flame" type="submit" data-lead-submit hidden>Enviar contexto para a Curupira</button>
+          </div>
+        </form>
+      </div>
     </dialog>
 
     <footer class="footer">
@@ -526,13 +550,36 @@
       const leadDialog = document.querySelector('.lead-dialog');
       const leadTriggers = document.querySelectorAll('[data-lead-dialog]');
       const closeLeadDialog = () => leadDialog?.close();
+      const leadForm = document.querySelector('#lead-form');
+      let currentLeadStep = 1;
+
+      const setLeadStep = (step) => {
+        currentLeadStep = step;
+        leadForm?.querySelectorAll('[data-lead-step]').forEach((panel) => {
+          const isCurrent = Number(panel.dataset.leadStep) === step;
+          panel.hidden = !isCurrent;
+          panel.classList.toggle('is-current', isCurrent);
+        });
+        leadDialog?.querySelectorAll('[data-progress-step]').forEach((item) => {
+          item.classList.toggle('is-current', Number(item.dataset.progressStep) === step);
+        });
+        leadForm?.querySelector('[data-lead-back]')?.toggleAttribute('hidden', step === 1);
+        leadForm?.querySelector('[data-lead-next]')?.toggleAttribute('hidden', step === 3);
+        leadForm?.querySelector('[data-lead-submit]')?.toggleAttribute('hidden', step !== 3);
+        leadDialog?.querySelector(`[data-lead-step="${step}"] input, [data-lead-step="${step}"] textarea, [data-lead-step="${step}"] select`)?.focus();
+      };
+
+      const isLeadStepValid = (step) => {
+        const fields = leadForm?.querySelectorAll(`[data-lead-step="${step}"] input[required], [data-lead-step="${step}"] textarea[required]`) || [];
+        return [...fields].every((field) => field.reportValidity());
+      };
 
       leadTriggers.forEach((trigger) => {
         trigger.addEventListener('click', (event) => {
           if (!leadDialog?.showModal) return;
           event.preventDefault();
           leadDialog.showModal();
-          leadDialog.querySelector('input[name="nome"]')?.focus();
+          setLeadStep(1);
         });
       });
 
@@ -544,7 +591,15 @@
         if (event.target === leadDialog) closeLeadDialog();
       });
 
-      document.querySelector('#lead-form')?.addEventListener('submit', (event) => {
+      leadForm?.querySelector('[data-lead-next]')?.addEventListener('click', () => {
+        if (isLeadStepValid(currentLeadStep)) setLeadStep(currentLeadStep + 1);
+      });
+
+      leadForm?.querySelector('[data-lead-back]')?.addEventListener('click', () => {
+        setLeadStep(currentLeadStep - 1);
+      });
+
+      leadForm?.addEventListener('submit', (event) => {
         event.preventDefault();
         const form = event.currentTarget;
         if (!form.checkValidity()) return form.reportValidity();

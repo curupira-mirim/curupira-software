@@ -692,35 +692,52 @@ h3 {
 /* ---------- Formulário de contato ---------- */
 
 .lead-dialog {
-  width: min(680px, calc(100vw - 32px));
-  max-height: min(820px, calc(100vh - 32px));
+  width: min(920px, calc(100vw - 48px));
+  max-height: min(680px, calc(100vh - 48px));
   padding: 0;
   border: 0;
   border-radius: 16px;
-  color: var(--ink);
-  background: var(--surface);
+  color: var(--on-dark);
+  background: var(--forest-deep);
   box-shadow: var(--shadow-plate);
 }
-.lead-dialog::backdrop { background: rgba(2, 23, 14, .72); backdrop-filter: blur(4px); }
-.lead-dialog-head { display: flex; justify-content: space-between; gap: 28px; padding: 34px 36px 22px; border-bottom: 1px solid var(--line); }
-.lead-dialog h2 { margin-bottom: 8px; font-size: clamp(26px, 4vw, 34px); }
-.lead-dialog-head p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
-.dialog-close { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--surface); cursor: pointer; }
-.dialog-close:hover { border-color: var(--forest); background: var(--mint); }
-.lead-form { display: grid; gap: 19px; padding: 26px 36px 34px; }
-.lead-form label { display: grid; gap: 7px; color: var(--ink); font-size: 14px; font-weight: 800; }
+.lead-dialog::backdrop { background: rgba(2, 23, 14, .82); backdrop-filter: saturate(110%) blur(7px); }
+.lead-dialog[open] { display: grid; grid-template-columns: minmax(255px, .75fr) minmax(0, 1.25fr); overflow: hidden; }
+.lead-aside { display: flex; flex-direction: column; min-height: 590px; padding: 38px; background: var(--forest); }
+.lead-aside > img { width: 48px; height: 48px; margin-bottom: auto; border-radius: 13px; }
+.lead-aside h2 { margin: 0 0 12px; color: var(--on-dark); font-size: clamp(30px, 3.6vw, 42px); line-height: 1.04; letter-spacing: -.035em; }
+.lead-aside > div > p:last-child { color: var(--on-dark-soft); font-size: 16px; line-height: 1.55; }
+.lead-aside-label { margin-bottom: 16px; color: var(--flame-lit); font-size: 13px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.lead-progress { display: grid; gap: 12px; margin: auto 0 0; padding: 32px 0 0; border-top: 1px solid var(--line-dark); list-style: none; }
+.lead-progress li { display: flex; align-items: center; gap: 10px; color: var(--on-dark-soft); font-size: 14px; font-weight: 700; }
+.lead-progress span { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border: 1px solid rgba(182, 216, 198, .38); border-radius: 50%; font-size: 12px; }
+.lead-progress .is-current { color: var(--on-dark); }
+.lead-progress .is-current span { border-color: var(--flame); color: var(--forest-ink); background: var(--flame); }
+.lead-dialog-body { min-width: 0; padding: 28px 38px 36px; color: var(--ink); background: var(--surface); }
+.lead-dialog-topline { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-bottom: 21px; border-bottom: 1px solid var(--line); }
+.lead-dialog-topline > p { margin: 0; color: var(--flame-text); font-size: 13px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.dialog-close { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 38px; height: 38px; padding: 0; border: 0; border-radius: 9px; color: var(--ink); background: var(--mint); cursor: pointer; }
+.dialog-close:hover { color: var(--on-dark); background: var(--forest); }
+.lead-form { display: grid; min-height: 504px; padding-top: 35px; }
+.lead-step { display: grid; align-content: start; gap: 22px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.lead-step[hidden] { display: none; }
+.lead-step legend { max-width: 13ch; padding: 0; color: var(--ink); font-size: clamp(26px, 3.2vw, 36px); font-weight: 800; line-height: 1.08; letter-spacing: -.035em; }
+.lead-step-copy { margin: 0 0 4px; color: var(--muted); font-size: 16px; line-height: 1.5; }
+.lead-form label { display: grid; gap: 8px; color: var(--ink); font-size: 13px; font-weight: 800; }
 .lead-form label span { color: var(--flame-text); }
-.lead-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.lead-form input, .lead-form textarea, .lead-form select { width: 100%; border: 1px solid #c9d8d0; border-radius: 10px; color: var(--ink); background: var(--surface); font: inherit; font-size: 16px; font-weight: 500; line-height: 1.45; }
-.lead-form input, .lead-form select { min-height: 48px; padding: 10px 12px; }
-.lead-form textarea { min-height: 98px; padding: 12px; resize: vertical; }
-.lead-form input::placeholder, .lead-form textarea::placeholder { color: #71857b; }
-.lead-form input:hover, .lead-form textarea:hover, .lead-form select:hover { border-color: #8eafa0; }
-.lead-form input:focus, .lead-form textarea:focus, .lead-form select:focus { outline: 2px solid var(--flame-deep); outline-offset: 2px; border-color: transparent; }
-.lead-form-note { margin: -3px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
-.lead-form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; padding-top: 3px; }
-.text-button { min-height: 44px; padding: 8px 4px; border: 0; color: var(--muted); background: transparent; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; }
+.lead-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.lead-form input, .lead-form textarea, .lead-form select { width: 100%; border: 0; border-bottom: 1px solid #b9cfc2; border-radius: 0; color: var(--ink); background: transparent; font: inherit; font-size: 16px; font-weight: 600; line-height: 1.45; transition: border-color 180ms var(--ease); }
+.lead-form input, .lead-form select { min-height: 47px; padding: 9px 0; }
+.lead-form textarea { min-height: 150px; padding: 10px 0; resize: none; }
+.lead-form input::placeholder, .lead-form textarea::placeholder { color: #73867d; font-weight: 450; }
+.lead-form input:hover, .lead-form textarea:hover, .lead-form select:hover { border-color: var(--forest); }
+.lead-form input:focus, .lead-form textarea:focus, .lead-form select:focus { outline: 0; border-color: var(--flame-deep); box-shadow: 0 2px 0 var(--flame-deep); }
+.lead-form-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; align-self: end; padding-top: 26px; }
+.lead-form-actions .button { min-width: 236px; }
+.lead-form [hidden] { display: none !important; }
+.text-button { min-height: 44px; padding: 8px 2px; border: 0; color: var(--muted); background: transparent; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; }
 .text-button:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 /* ---------- Rodapé ---------- */
 
@@ -815,11 +832,17 @@ h3 {
   .steps li::before { grid-row: auto; grid-column: 1; padding-top: 0; }
   .steps h3, .steps p { grid-column: 1; }
   .contact-actions, .contact-actions .button { width: 100%; }
-  .lead-dialog { width: min(100vw - 20px, 680px); }
-  .lead-dialog-head { padding: 26px 22px 18px; }
-  .lead-form { padding: 22px; }
+  .lead-dialog { width: min(100vw - 20px, 680px); max-height: calc(100vh - 20px); }
+  .lead-dialog[open] { grid-template-columns: 1fr; overflow: auto; }
+  .lead-aside { min-height: auto; padding: 24px 22px; }
+  .lead-aside > img, .lead-progress { display: none; }
+  .lead-aside h2 { font-size: 29px; }
+  .lead-aside-label { margin-bottom: 8px; }
+  .lead-dialog-body { padding: 22px; }
+  .lead-form { min-height: 0; padding-top: 28px; }
   .lead-form-grid { grid-template-columns: 1fr; gap: 18px; }
-  .lead-form-actions, .lead-form-actions .button { width: 100%; }
+  .lead-form-actions { align-items: stretch; flex-direction: column-reverse; }
+  .lead-form-actions .button { width: 100%; }
   .text-button { text-align: center; }
   .footer-links { justify-content: flex-start; }
 }
