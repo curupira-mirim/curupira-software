@@ -238,7 +238,7 @@
           <a href="#cases">Cases</a>
           <a href="#metodo">Método</a>
           <a href="#fundador">Quem está à frente</a>
-          <a class="nav-cta" href="#contato">Conversar sobre meu negócio</a>
+          <a class="nav-cta" href="mailto:alisson.winter@curupirasoftware.com?subject=Quero%20conversar%20sobre%20meu%20neg%C3%B3cio" data-lead-dialog>Conversar sobre meu negócio</a>
         </nav>
 
         <details class="menu">
@@ -252,7 +252,7 @@
             <a href="#cases">Cases</a>
             <a href="#metodo">Método</a>
             <a href="#fundador">Quem está à frente</a>
-            <a href="#contato">Conversar sobre meu negócio</a>
+            <a href="mailto:alisson.winter@curupirasoftware.com?subject=Quero%20conversar%20sobre%20meu%20neg%C3%B3cio" data-lead-dialog>Conversar sobre meu negócio</a>
           </nav>
         </details>
       </div>
@@ -265,7 +265,7 @@
             <h1>Entendemos o negócio. Construímos o que faz ele avançar.</h1>
             <p class="lead">A Curupira lê o contexto, a cultura e os processos da sua empresa para conectar pessoas, dados e tecnologia. Do fluxo comercial ao financeiro, criamos a solução que a operação realmente precisa.</p>
             <div class="hero-actions">
-              <a class="button primary" href="mailto:alisson.winter@curupirasoftware.com?subject=Quero%20conversar%20sobre%20meu%20neg%C3%B3cio">Conversar sobre meu negócio</a>
+              <a class="button primary" href="mailto:alisson.winter@curupirasoftware.com?subject=Quero%20conversar%20sobre%20meu%20neg%C3%B3cio" data-lead-dialog>Conversar sobre meu negócio</a>
               <a class="button secondary" href="#cases">Ver o que já construímos</a>
             </div>
             <p class="hero-note">Uma conversa começa pelo problema, não por uma ferramenta.</p>
@@ -429,7 +429,7 @@
             </p>
           </div>
           <div class="contact-actions">
-            <a class="button flame" href="mailto:alisson.winter@curupirasoftware.com">
+            <a class="button flame" href="mailto:alisson.winter@curupirasoftware.com?subject=Quero%20conversar%20sobre%20meu%20neg%C3%B3cio" data-lead-dialog>
               <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
                 <rect x="3.25" y="5.25" width="17.5" height="13.5" rx="2.25" stroke="currentColor" stroke-width="1.75"></rect>
                 <path d="m4.5 7.5 7.5 5.5 7.5-5.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -440,6 +440,47 @@
         </div>
       </section>
     </main>
+
+    <dialog class="lead-dialog" aria-labelledby="lead-dialog-title">
+      <div class="lead-dialog-head">
+        <div>
+          <h2 id="lead-dialog-title">Vamos entender seu contexto.</h2>
+          <p>Com estas informações, a conversa já começa pelo que importa para sua operação.</p>
+        </div>
+        <button class="dialog-close" type="button" aria-label="Fechar formulário" data-dialog-close>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+
+      <form class="lead-form" id="lead-form">
+        <div class="lead-form-grid">
+          <label>Seu nome <span aria-hidden="true">*</span><input name="nome" autocomplete="name" required></label>
+          <label>Seu e-mail <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" required></label>
+          <label>Empresa <input name="empresa" autocomplete="organization"></label>
+          <label>Seu papel na empresa <input name="cargo" autocomplete="organization-title" placeholder="Ex.: sócio, comercial, operações"></label>
+        </div>
+        <label>Onde o fluxo trava hoje? <span aria-hidden="true">*</span><textarea name="dor" rows="3" required placeholder="Conte a situação que você quer resolver."></textarea></label>
+        <div class="lead-form-grid">
+          <label>O que você quer melhorar primeiro?
+            <select name="frente">
+              <option value="Ainda estou entendendo">Ainda estou entendendo</option>
+              <option>Comercial, SDR ou CRM</option>
+              <option>Dados, integração ou BI</option>
+              <option>Automação de processos</option>
+              <option>IA aplicada à operação</option>
+              <option>Software ou produto sob medida</option>
+              <option>Financeiro ou contábil</option>
+            </select>
+          </label>
+          <label>Como podemos falar? <input name="contato" autocomplete="tel" placeholder="Telefone, WhatsApp ou melhor horário"></label>
+        </div>
+        <p class="lead-form-note">Ao continuar, abrimos seu aplicativo de e-mail com a mensagem organizada para envio à Curupira.</p>
+        <div class="lead-form-actions">
+          <button class="button primary" type="submit">Preparar e-mail para a Curupira</button>
+          <button class="text-button" type="button" data-dialog-close>Agora não</button>
+        </div>
+      </form>
+    </dialog>
 
     <footer class="footer">
       <div class="wrap footer-grid">
@@ -480,6 +521,55 @@
         if (event.target.closest('a')) {
           document.querySelector('.menu')?.removeAttribute('open');
         }
+      });
+
+      const leadDialog = document.querySelector('.lead-dialog');
+      const leadTriggers = document.querySelectorAll('[data-lead-dialog]');
+      const closeLeadDialog = () => leadDialog?.close();
+
+      leadTriggers.forEach((trigger) => {
+        trigger.addEventListener('click', (event) => {
+          if (!leadDialog?.showModal) return;
+          event.preventDefault();
+          leadDialog.showModal();
+          leadDialog.querySelector('input[name="nome"]')?.focus();
+        });
+      });
+
+      document.querySelectorAll('[data-dialog-close]').forEach((button) => {
+        button.addEventListener('click', closeLeadDialog);
+      });
+
+      leadDialog?.addEventListener('click', (event) => {
+        if (event.target === leadDialog) closeLeadDialog();
+      });
+
+      document.querySelector('#lead-form')?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (!form.checkValidity()) return form.reportValidity();
+        const data = new FormData(form);
+        const line = (label, key) => `${label}: ${data.get(key)?.trim() || 'Não informado'}`;
+        const subject = `Novo contato — ${data.get('empresa')?.trim() || data.get('nome')?.trim()}`;
+        const body = [
+          'Olá, Curupira.',
+          '',
+          'Quero conversar sobre uma necessidade do meu negócio.',
+          '',
+          line('Nome', 'nome'),
+          line('E-mail', 'email'),
+          line('Empresa', 'empresa'),
+          line('Papel na empresa', 'cargo'),
+          line('Frente de interesse', 'frente'),
+          line('Como falar', 'contato'),
+          '',
+          'Onde o fluxo trava hoje:',
+          data.get('dor')?.trim(),
+          '',
+          'Enviado pelo site da Curupira Software.'
+        ].join('\n');
+        window.location.href = `mailto:alisson.winter@curupirasoftware.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        closeLeadDialog();
       });
     </script>
   </body>

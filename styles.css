@@ -689,6 +689,39 @@ h3 {
   min-height: 44px;
 }
 
+/* ---------- Formulário de contato ---------- */
+
+.lead-dialog {
+  width: min(680px, calc(100vw - 32px));
+  max-height: min(820px, calc(100vh - 32px));
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  color: var(--ink);
+  background: var(--surface);
+  box-shadow: var(--shadow-plate);
+}
+.lead-dialog::backdrop { background: rgba(2, 23, 14, .72); backdrop-filter: blur(4px); }
+.lead-dialog-head { display: flex; justify-content: space-between; gap: 28px; padding: 34px 36px 22px; border-bottom: 1px solid var(--line); }
+.lead-dialog h2 { margin-bottom: 8px; font-size: clamp(26px, 4vw, 34px); }
+.lead-dialog-head p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.5; }
+.dialog-close { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--surface); cursor: pointer; }
+.dialog-close:hover { border-color: var(--forest); background: var(--mint); }
+.lead-form { display: grid; gap: 19px; padding: 26px 36px 34px; }
+.lead-form label { display: grid; gap: 7px; color: var(--ink); font-size: 14px; font-weight: 800; }
+.lead-form label span { color: var(--flame-text); }
+.lead-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.lead-form input, .lead-form textarea, .lead-form select { width: 100%; border: 1px solid #c9d8d0; border-radius: 10px; color: var(--ink); background: var(--surface); font: inherit; font-size: 16px; font-weight: 500; line-height: 1.45; }
+.lead-form input, .lead-form select { min-height: 48px; padding: 10px 12px; }
+.lead-form textarea { min-height: 98px; padding: 12px; resize: vertical; }
+.lead-form input::placeholder, .lead-form textarea::placeholder { color: #71857b; }
+.lead-form input:hover, .lead-form textarea:hover, .lead-form select:hover { border-color: #8eafa0; }
+.lead-form input:focus, .lead-form textarea:focus, .lead-form select:focus { outline: 2px solid var(--flame-deep); outline-offset: 2px; border-color: transparent; }
+.lead-form-note { margin: -3px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.lead-form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; padding-top: 3px; }
+.text-button { min-height: 44px; padding: 8px 4px; border: 0; color: var(--muted); background: transparent; font: inherit; font-size: 15px; font-weight: 700; cursor: pointer; }
+.text-button:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
 /* ---------- Rodapé ---------- */
 
 .footer {
@@ -782,6 +815,12 @@ h3 {
   .steps li::before { grid-row: auto; grid-column: 1; padding-top: 0; }
   .steps h3, .steps p { grid-column: 1; }
   .contact-actions, .contact-actions .button { width: 100%; }
+  .lead-dialog { width: min(100vw - 20px, 680px); }
+  .lead-dialog-head { padding: 26px 22px 18px; }
+  .lead-form { padding: 22px; }
+  .lead-form-grid { grid-template-columns: 1fr; gap: 18px; }
+  .lead-form-actions, .lead-form-actions .button { width: 100%; }
+  .text-button { text-align: center; }
   .footer-links { justify-content: flex-start; }
 }
 
