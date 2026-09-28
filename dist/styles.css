@@ -945,12 +945,16 @@ h3 {
 }
 
 .home-page .site-header {
-  background: rgba(245, 247, 244, .9);
+  border-bottom-color: rgba(255,255,255,.12);
+  background: rgba(5, 46, 26, .95);
   backdrop-filter: blur(16px);
 }
 
 .home-page .header-row { min-height: 82px; }
 .home-page .brand-mark { width: 42px; height: 42px; border-radius: 13px; }
+.home-page .brand { color: var(--on-dark); }
+.home-page .nav a { color: rgba(255,255,255,.74); }
+.home-page .nav a:hover { color: var(--on-dark); background: rgba(255,255,255,.1); }
 
 .home-page .hero {
   min-height: 720px;
@@ -992,15 +996,50 @@ h3 {
 .home-page .hero-mark { justify-self: end; width: min(100%, 400px); }
 .home-page .hero-mark img { width: 100%; border-radius: 30px; box-shadow: 0 28px 84px rgba(0,0,0,.34); }
 
-.home-page .marquee { position: relative; z-index: 1; padding-bottom: 30px; color: rgba(255,255,255,.7); }
-.home-page .marquee li { border-top-color: rgba(255,255,255,.18); }
+.home-page .marquee {
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+  color: var(--forest);
+  background: #fff;
+  white-space: nowrap;
+}
+.home-page .marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 26px;
+  min-width: max-content;
+  padding: 16px 0;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  animation: curupira-marquee 28s linear infinite;
+}
+.home-page .marquee-track b { color: var(--flame); font-size: 13px; }
+@keyframes curupira-marquee { to { transform: translateX(-50%); } }
 .home-page .nav .nav-cta { color: #fff; background: var(--flame); box-shadow: none; }
 .home-page .nav .nav-cta:hover { color: #fff; background: var(--flame-deep); }
 
 .home-page .company { border: 0; background: #fff; }
 .home-page .company-copy h2 { font-size: clamp(36px, 4.5vw, 60px); }
 .home-page .context-panel { border-radius: 28px; box-shadow: 0 24px 60px rgba(2,23,14,.17); }
-.home-page .capabilities { background: #e7f1eb; }
+.home-page .capabilities {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding-top: calc(var(--section-y) + 66px);
+  background: #e7f1eb;
+}
+.home-page .capabilities::before {
+  position: absolute;
+  top: -72px;
+  left: -5%;
+  width: 110%;
+  height: 144px;
+  border-radius: 0 0 50% 50%;
+  background: #fff;
+  content: "";
+}
+.home-page .capabilities .wrap { position: relative; z-index: 1; }
 .home-page .capability-list { column-gap: 54px; }
 .home-page .capability-list article { min-height: 178px; padding: 30px 0; transition: transform 220ms var(--ease); }
 .home-page .capability-list article:hover { transform: translateX(8px); }
@@ -1043,4 +1082,11 @@ h3 {
   .home-page .hero h1 { font-size: clamp(42px, 13vw, 58px); }
   .home-page .hero-mark { width: min(88vw, 350px); }
   .home-page .capability-list article:hover { transform: none; }
+  .home-page .marquee-track { animation-duration: 22s; }
+  .home-page .capabilities { padding-top: calc(var(--section-y) + 44px); }
+  .home-page .capabilities::before { top: -52px; height: 104px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page .marquee-track { animation: none; }
 }
