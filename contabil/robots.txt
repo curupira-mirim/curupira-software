@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://contabil.curupirasoftware.com/sitemap.xml

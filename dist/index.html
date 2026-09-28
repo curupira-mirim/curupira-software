@@ -59,6 +59,9 @@
     <link rel="apple-touch-icon" href="assets/logo_minimalista_curupira.png">
     <link rel="preload" as="image" href="assets/logo_minimalista_curupira.png">
     <link rel="stylesheet" href="styles.css">
+    <script>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -217,7 +220,7 @@
       }
     </script>
   </head>
-  <body>
+  <body class="home-page">
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
     <header class="site-header">
@@ -236,9 +239,10 @@
         <nav class="nav" aria-label="Navegação principal">
           <a href="#atuacao">O que fazemos</a>
           <a href="#cases">Cases</a>
+          <a href="https://contabil.curupirasoftware.com/">Contabilidade</a>
           <a href="#metodo">Método</a>
-          <a href="#fundador">Quem está à frente</a>
-          <a class="nav-cta" href="#contato" data-lead-dialog>Conversar sobre meu negócio</a>
+          <a href="#metodo">Como trabalhamos</a>
+          <a class="nav-cta" href="mailto:contato@curupirasoftware.com?subject=Quero%20conversar%20sobre%20minha%20opera%C3%A7%C3%A3o">Conversar sobre meu negócio</a>
         </nav>
 
         <details class="menu">
@@ -250,9 +254,10 @@
           <nav class="menu-panel" aria-label="Navegação principal (compacta)">
             <a href="#atuacao">O que fazemos</a>
             <a href="#cases">Cases</a>
+            <a href="https://contabil.curupirasoftware.com/">Contabilidade</a>
             <a href="#metodo">Método</a>
-            <a href="#fundador">Quem está à frente</a>
-            <a href="#contato" data-lead-dialog>Conversar sobre meu negócio</a>
+            <a href="#metodo">Como trabalhamos</a>
+            <a href="mailto:contato@curupirasoftware.com?subject=Quero%20conversar%20sobre%20minha%20opera%C3%A7%C3%A3o">Conversar sobre meu negócio</a>
           </nav>
         </details>
       </div>
@@ -262,16 +267,17 @@
       <section class="hero" id="topo">
         <div class="wrap hero-grid">
           <div class="hero-content">
+            <p class="eyebrow">Software, automação e IA para operações reais</p>
             <h1>Entendemos o negócio. Construímos o que faz ele avançar.</h1>
             <p class="lead">A Curupira lê o contexto, a cultura e os processos da sua empresa para conectar pessoas, dados e tecnologia. Do fluxo comercial ao financeiro, criamos a solução que a operação realmente precisa.</p>
             <div class="hero-actions">
-              <a class="button primary" href="#contato" data-lead-dialog>Conversar sobre meu negócio</a>
+              <a class="button primary" href="mailto:contato@curupirasoftware.com?subject=Quero%20conversar%20sobre%20minha%20opera%C3%A7%C3%A3o">Conversar sobre meu negócio</a>
               <a class="button secondary" href="#cases">Ver o que já construímos</a>
             </div>
             <p class="hero-note">Uma conversa começa pelo problema, não por uma ferramenta.</p>
           </div>
-          <div class="hero-mark">
-            <img src="assets/logo_minimalista_curupira.png" alt="Marca da Curupira Software: chama laranja sobre verde escuro" width="1254" height="1254" fetchpriority="high">
+          <div class="hero-mark" aria-hidden="true">
+            <img src="assets/logo_minimalista_curupira.png" alt="" width="1254" height="1254" fetchpriority="high">
           </div>
         </div>
         <div class="wrap">
@@ -284,6 +290,7 @@
       <section class="section company" id="empresa" aria-labelledby="empresa-titulo">
         <div class="wrap company-grid">
           <div class="company-copy">
+            <p class="eyebrow">Tecnologia com contexto</p>
             <h2 id="empresa-titulo">A tecnologia só resolve quando entende a operação.</h2>
             <p>Uma empresa pode pedir um CRM e precisar, antes, clarear quem recebe o lead. Pode pedir IA e descobrir que seus dados não chegam completos. A Curupira entra nesse ponto: entende como as pessoas trabalham, onde a informação se perde e o que precisa mudar.</p>
             <p>Às vezes a resposta é uma integração. Em outras, um fluxo automatizado, um painel de BI ou software próprio. A decisão nasce do contexto do negócio e da cultura de quem vai usar.</p>
@@ -332,8 +339,15 @@
         <div class="wrap method-grid"><div class="method-copy"><h2 id="metodo-titulo">Primeiro, entendimento. Depois, construção.</h2><p>A melhor tecnologia é a que a equipe consegue incorporar à rotina e o negócio consegue acompanhar.</p></div><ol class="steps"><li><h3>Escutar o negócio</h3><p>Mapeamos objetivos, pessoas, ferramentas e o jeito de trabalhar da empresa.</p></li><li><h3>Desenhar o fluxo</h3><p>Definimos o que muda no processo, o que se conecta e como medir se melhorou.</p></li><li><h3>Construir e integrar</h3><p>Implementamos o menor caminho útil, com responsáveis, dados e exceções claros.</p></li><li><h3>Acompanhar e evoluir</h3><p>Observamos o uso, corrigimos atritos e ampliamos o que produz valor.</p></li></ol></div>
       </section>
 
-      <section class="section founder" id="fundador" aria-labelledby="fundador-titulo">
-        <div class="wrap founder-grid"><img src="assets/alisson-winter.jpg" alt="Alisson Winter, fundador da Curupira Software" width="1254" height="1254" loading="lazy"><div><h2 id="fundador-titulo">Tem alguém do outro lado da tecnologia.</h2><p>Sou Alisson Winter, à frente da Curupira Software. Gosto de começar pela conversa que revela o problema real: o que a equipe repete, o que a liderança não consegue enxergar e o que o cliente sente na ponta.</p><p>Minha proposta é construir com o negócio, respeitando seu contexto e sua cultura. A tecnologia entra para dar forma a essa mudança, não para impor um processo genérico.</p><a class="text-link" href="mailto:alisson.winter@curupirasoftware.com?subject=Vamos%20conversar%20sobre%20meu%20neg%C3%B3cio">Falar diretamente comigo</a></div></div>
+      <section class="section principles" aria-labelledby="principios-titulo">
+        <div class="wrap">
+          <div class="section-head"><p class="eyebrow">O que orienta cada projeto</p><h2 id="principios-titulo">Tecnologia que respeita a rotina antes de querer mudá-la.</h2><p>O papel da Curupira é dar clareza à operação e construir um caminho possível de evolução — com gente no controle das decisões que importam.</p></div>
+          <div class="principle-grid">
+            <article><span>01</span><h3>Começar pelo que acontece hoje</h3><p>Antes de sugerir ferramenta, entendemos as pessoas, as exceções e a informação que sustenta o trabalho.</p></article>
+            <article><span>02</span><h3>Construir o menor caminho útil</h3><p>Priorizamos uma entrega que a equipe consiga testar, acompanhar e usar de verdade.</p></article>
+            <article><span>03</span><h3>Evoluir com visibilidade</h3><p>Fluxos, dados e responsáveis ficam claros para que a solução possa amadurecer sem virar uma caixa-preta.</p></article>
+          </div>
+        </div>
       </section>
 
       <section class="section faq" id="perguntas" aria-labelledby="perguntas-titulo">
@@ -429,12 +443,12 @@
             </p>
           </div>
           <div class="contact-actions">
-            <a class="button flame" href="#contato" data-lead-dialog>
+            <a class="button flame" href="mailto:contato@curupirasoftware.com?subject=Quero%20conversar%20sobre%20minha%20opera%C3%A7%C3%A3o">
               <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
                 <rect x="3.25" y="5.25" width="17.5" height="13.5" rx="2.25" stroke="currentColor" stroke-width="1.75"></rect>
                 <path d="m4.5 7.5 7.5 5.5 7.5-5.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
-              Conversar com Alisson
+              Falar com a Curupira
             </a>
           </div>
         </div>
@@ -539,6 +553,7 @@
           <a href="/servicos/">Serviços</a>
           <a href="/regioes/zona-da-mata-mineira/">Zona da Mata</a>
           <a href="/cases/">Cases</a>
+          <a href="https://contabil.curupirasoftware.com/">Contabilidade</a>
           <a href="#metodo">Método</a>
           <a href="https://marquerapido.com" target="_blank" rel="noopener">Marque Rápido</a>
           <a href="https://mipaggy.com" target="_blank" rel="noopener">Mipaggy</a>
@@ -552,6 +567,10 @@
     </footer>
 
     <script>
+      window.addEventListener('load', () => {
+        if (!window.location.hash) window.scrollTo(0, 0);
+      });
+
       document.querySelector('.menu-panel')?.addEventListener('click', (event) => {
         if (event.target.closest('a')) {
           document.querySelector('.menu')?.removeAttribute('open');
