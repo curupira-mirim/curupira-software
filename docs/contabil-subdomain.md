@@ -1,14 +1,27 @@
-# Landing de Contabilidade
+# Landings em subdomínios
 
-A landing está em `contabil/` e é copiada para `dist/contabil/` a cada `npm run build`.
+As landings ficam em diretórios com o nome do subdomínio. Por exemplo,
+`contabil/` é copiado para `dist/contabil/` a cada `npm run build` e é servido
+em `https://contabil.curupirasoftware.com/`.
 
-O middleware em `functions/_middleware.js` identifica o host `contabil.curupirasoftware.com` e entrega essa landing na raiz do subdomínio. Ele também disponibiliza os assets, o `robots.txt` e o sitemap específicos dela.
+O Worker em `workers/subdomain-router.js` descobre o primeiro rótulo do host e
+serve `dist/<subdomínio>/`. Assim, uma nova landing requer apenas um diretório
+novo no repositório e um deploy — não uma nova configuração de domínio.
 
-## Publicação no Cloudflare Pages
+## Configuração única no Cloudflare
 
-1. Faça o deploy normal deste projeto no Cloudflare Pages.
-2. Em **Custom domains**, adicione `contabil.curupirasoftware.com` ao mesmo projeto.
-3. No provedor DNS, crie o registro indicado pelo Cloudflare para o subdomínio e aguarde a validação do certificado.
-4. Confirme que `https://contabil.curupirasoftware.com/` abre a landing e que o CTA aponta para `https://curupirasoftware.com/contato/`.
+Cloudflare Pages não suporta domínios customizados curinga. Mantenha o Pages
+para `curupirasoftware.com` e configure uma vez o Worker de subdomínios:
 
-O subdomínio depende dessa configuração de DNS/Cloudflare; ela não pode ser criada somente a partir dos arquivos do repositório.
+1. Em **DNS**, crie um registro `A` com nome `*`, destino `192.0.2.1` e proxy
+   **Proxied** (nuvem laranja). O endereço não recebe tráfego: a rota do Worker
+   responde antes de qualquer origem.
+2. Faça o deploy do Worker com `npm run build` e
+   `npx wrangler deploy --config wrangler.wildcard.toml`.
+3. Confirme que a rota `*.curupirasoftware.com/*` está associada ao Worker
+   `curupira-subdomains`.
+4. Acesse `https://contabil.curupirasoftware.com/`.
+
+Registros DNS específicos continuam tendo precedência sobre o curinga. Para
+adicionar `financeiro.curupirasoftware.com`, crie `financeiro/` com o
+`index.html` e os assets necessários, execute o build e publique o Worker.
