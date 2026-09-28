@@ -16,11 +16,11 @@ const json = (body, status = 200) => new Response(JSON.stringify(body), {
   headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
 });
 
-export async function onRequestPost(context) {
+export async function handleLeadPost(request, env, context = {}) {
   let input;
 
   try {
-    input = await context.request.json();
+    input = await request.json();
   } catch {
     return json({ error: 'Não foi possível ler suas informações. Tente novamente.' }, 400);
   }
@@ -37,9 +37,9 @@ export async function onRequestPost(context) {
     return json({ error: 'Confira o seu e-mail para continuar.' }, 400);
   }
 
-  const apiKey = context.env.RESEND_API_KEY;
-  const from = context.env.LEAD_EMAIL_FROM;
-  const recipient = context.env.LEAD_EMAIL_TO || 'alisson.winter@curupirasoftware.com';
+  const apiKey = env.RESEND_API_KEY;
+  const from = env.LEAD_EMAIL_FROM;
+  const recipient = env.LEAD_EMAIL_TO || 'alisson.winter@curupirasoftware.com';
 
   if (!apiKey || !from) {
     return json({ error: 'O envio está sendo configurado. Tente novamente em alguns minutos.' }, 503);
@@ -95,4 +95,8 @@ export async function onRequestPost(context) {
   if (!response.ok) return json({ error: 'Não foi possível enviar agora. Tente novamente em alguns minutos.' }, 502);
 
   return json({ ok: true });
+}
+
+export async function onRequestPost(context) {
+  return handleLeadPost(context.request, context.env, context);
 }

@@ -16,12 +16,14 @@ para `curupirasoftware.com` e configure uma vez o Worker de subdomínios:
 1. Em **DNS**, crie um registro `A` com nome `*`, destino `192.0.2.1` e proxy
    **Proxied** (nuvem laranja). O endereço não recebe tráfego: a rota do Worker
    responde antes de qualquer origem.
-2. Faça o deploy do Worker com `npm run build` e
-   `npx wrangler deploy --config wrangler.wildcard.toml`.
+2. Em **Workers & Pages → curupira-subdomains → Settings → Builds**, conecte
+   este repositório e a branch `main`. O Cloudflare Workers Builds publica a
+   cada push, como o antigo Pages, sem token salvo no repositório. Use
+   `npm test` como comando de build.
 3. Confirme que a rota `*.curupirasoftware.com/*` está associada ao Worker
    `curupira-subdomains`.
 4. Acesse `https://contabil.curupirasoftware.com/`.
 
 Registros DNS específicos continuam tendo precedência sobre o curinga. Para
 adicionar `financeiro.curupirasoftware.com`, crie `financeiro/` com o
-`index.html` e os assets necessários, execute o build e publique o Worker.
+`index.html` e os assets necessários e envie para a `main`.

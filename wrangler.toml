@@ -1,2 +1,21 @@
-name = "curupira-software"
-pages_build_output_dir = "dist"
+name = "curupira-subdomains"
+main = "workers/subdomain-router.js"
+compatibility_date = "2026-09-28"
+
+[[routes]]
+pattern = "curupirasoftware.com/*"
+zone_name = "curupirasoftware.com"
+
+[[routes]]
+pattern = "www.curupirasoftware.com/*"
+zone_name = "curupirasoftware.com"
+
+[[routes]]
+pattern = "*.curupirasoftware.com/*"
+zone_name = "curupirasoftware.com"
+
+[assets]
+directory = "./dist-subdomains"
+binding = "ASSETS"
+run_worker_first = true
+html_handling = "none"
