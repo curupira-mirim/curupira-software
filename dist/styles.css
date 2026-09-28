@@ -1071,7 +1071,7 @@ h3 {
 @media (max-width: 900px) {
   .home-page .hero { min-height: auto; }
   .home-page .hero-grid { min-height: 0; padding-top: 82px; }
-  .home-page .hero-mark { justify-self: start; width: min(72vw, 370px); }
+  .home-page .hero-mark { display: none; }
   .home-page .principle-grid { grid-template-columns: 1fr; }
   .home-page .principle-grid article { min-height: 0; }
 }
@@ -1080,7 +1080,6 @@ h3 {
   .home-page .header-row { min-height: 70px; }
   .home-page .hero-grid { padding-top: 66px; }
   .home-page .hero h1 { font-size: clamp(42px, 13vw, 58px); }
-  .home-page .hero-mark { width: min(88vw, 350px); }
   .home-page .capability-list article:hover { transform: none; }
   .home-page .marquee-track { animation-duration: 22s; }
   .home-page .capabilities { padding-top: calc(var(--section-y) + 44px); }
