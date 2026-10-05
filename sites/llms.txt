@@ -1,0 +1,16 @@
+# Landing pages e sites da Curupira Software
+
+> Curupira Software cria landing pages e sites para empresas, profissionais e produtos digitais apresentarem sua oferta com clareza, conversão e uma base técnica para SEO, AEO e GEO.
+
+Página canônica: https://sites.curupirasoftware.com/
+
+## Serviço
+- [Landing pages e sites](https://sites.curupirasoftware.com/): Criação de estratégia, copy, design, desenvolvimento e fundamentos técnicos de descoberta.
+- SEO: estrutura técnica, conteúdo útil, metadados, sitemap e dados estruturados.
+- AEO e GEO: conteúdo visível, semântica e informações consistentes para mecanismos de resposta e sistemas de busca generativa. Essas práticas não garantem posições, recomendações ou resultados por mecanismos externos.
+
+## Projetos publicados
+- [Laura Ribeiro — Psicóloga](https://psilauraribeiro.com/): site institucional para psicoterapia online e presencial em Juiz de Fora.
+- [Guilherme Paes — Editor de vídeo](https://guilherme-paes-portfolio.winter-alisson.workers.dev/): portfólio de edição de vídeo, design e projetos digitais.
+
+Para informações institucionais e contato, consulte https://curupirasoftware.com/.

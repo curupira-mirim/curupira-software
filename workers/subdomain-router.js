@@ -2,6 +2,8 @@ import { handleLeadPost } from '../functions/api/lead.js';
 
 const BASE_HOST = 'curupirasoftware.com';
 const WWW_HOST = `www.${BASE_HOST}`;
+const LAURA_ORIGIN = 'https://psilauraribeiro.com';
+const LAURA_PREVIEW_PREFIX = '/preview/laura';
 
 function siteFromHostname(hostname) {
   const suffix = `.${BASE_HOST}`;
@@ -31,8 +33,41 @@ function subdomainAssetPath(site, path) {
   if (path.startsWith('/assets/')) return `/${site}${path}`;
   // Existing landings may use an absolute /<subdomain>/assets URL.
   if (path.startsWith(`/${site}/assets/`)) return path;
-  if (['/robots.txt', '/sitemap.xml', '/favicon.ico'].includes(path)) return `/${site}${path}`;
+  if (['/robots.txt', '/sitemap.xml', '/llms.txt', '/favicon.ico'].includes(path)) return `/${site}${path}`;
   return null;
+}
+
+function rewriteLauraPreview(html) {
+  return html.replace(/\b(href|src|action)=(['"])\/(?!\/)/gi, `$1=$2${LAURA_PREVIEW_PREFIX}/`);
+}
+
+function rewriteLauraStyles(css) {
+  return css.replace(/url\((['"]?)\/(?!\/)/gi, `url($1${LAURA_PREVIEW_PREFIX}/`);
+}
+
+async function lauraPreviewResponse(request) {
+  const url = new URL(request.url);
+  const upstreamPath = url.pathname.slice(LAURA_PREVIEW_PREFIX.length) || '/';
+  const upstream = new URL(`${upstreamPath}${url.search}`, LAURA_ORIGIN);
+  const response = await fetch(upstream, { method: request.method, headers: request.headers });
+  const headers = new Headers(response.headers);
+  const contentType = headers.get('content-type') || '';
+
+  // The preview is served from sites.curupirasoftware.com, so it remains
+  // same-origin with the embedding portfolio. Do not pass stale frame rules
+  // from the upstream response through to this controlled preview.
+  headers.delete('x-frame-options');
+
+  if (request.method === 'HEAD' || (!contentType.includes('text/html') && !contentType.includes('text/css'))) {
+    return new Response(response.body, { status: response.status, headers });
+  }
+
+  headers.delete('content-length');
+  headers.delete('content-encoding');
+  headers.delete('etag');
+  const source = await response.text();
+  const body = contentType.includes('text/html') ? rewriteLauraPreview(source) : rewriteLauraStyles(source);
+  return new Response(body, { status: response.status, headers });
 }
 
 export default {
@@ -54,8 +89,14 @@ export default {
       return assetResponse(request, env, mainAssetPath(url.pathname));
     }
 
-    const site = siteFromHostname(hostname);
+    const isLocalPreview = hostname === 'localhost' || hostname === '127.0.0.1';
+    const site = siteFromHostname(hostname) || (isLocalPreview ? 'sites' : null);
     if (!site) return new Response('Subdomínio inválido.', { status: 400 });
+
+    if ((site === 'sites' || isLocalPreview) && url.pathname.startsWith(`${LAURA_PREVIEW_PREFIX}/`)) {
+      if (!['GET', 'HEAD'].includes(request.method)) return new Response('Método não permitido.', { status: 405 });
+      return lauraPreviewResponse(request);
+    }
 
     const target = subdomainAssetPath(site, url.pathname);
 

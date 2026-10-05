@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sites.curupirasoftware.com/sitemap.xml
