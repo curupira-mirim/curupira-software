@@ -12,5 +12,6 @@ Página canônica: https://sites.curupirasoftware.com/
 ## Projetos publicados
 - [Laura Ribeiro — Psicóloga](https://psilauraribeiro.com/): site institucional para psicoterapia online e presencial em Juiz de Fora.
 - [Guilherme Paes — Editor de vídeo](https://guilherme-paes-portfolio.winter-alisson.workers.dev/): portfólio de edição de vídeo, design e projetos digitais.
+- [Vidda Agência de Viagens](https://viddaviagens.com.br/): site institucional para agência de viagens com imersões internacionais, grupos exclusivos e curadoria entre Portugal e Brasil.
 
 Para informações institucionais e contato, consulte https://curupirasoftware.com/.
