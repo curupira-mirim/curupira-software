@@ -524,7 +524,7 @@ h3 {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -1004,16 +1004,23 @@ h3 {
   white-space: nowrap;
 }
 .home-page .marquee-track {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 26px;
   min-width: max-content;
-  padding: 16px 0;
   font-size: 15px;
   font-weight: 800;
   letter-spacing: -.01em;
   animation: curupira-marquee 28s linear infinite;
 }
+.home-page .marquee-group {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 26px;
+  padding: 16px 26px 16px 0;
+}
+.home-page .marquee:hover .marquee-track,
+.home-page .marquee-track.is-paused { animation-play-state: paused; }
 .home-page .marquee-track b { color: var(--flame); font-size: 13px; }
 @keyframes curupira-marquee { to { transform: translateX(-50%); } }
 .home-page .nav .nav-cta { color: #fff; background: var(--flame); box-shadow: none; }
