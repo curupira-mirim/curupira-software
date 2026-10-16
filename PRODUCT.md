@@ -23,7 +23,7 @@ Além de uma galeria de links, a landing combina estratégia de conversão, fund
 - A vitrine é uma landing estática publicada em `sites.curupirasoftware.com` pelo Worker de subdomínios existente.
 - Projetos podem ter prévia `embed` ou `external` conforme os cabeçalhos de segurança do site de destino.
 - O site de Laura Ribeiro bloqueia iframe externo; o portfólio de Guilherme Paes permite incorporação no momento da verificação.
-- O catálogo inicial contém somente os dois sites aprovados pelo usuário.
+- O catálogo apresenta os projetos publicados aprovados pelo usuário, com prévias incorporadas quando o destino permite.
 
 ## Brand Commitments
 
@@ -32,7 +32,7 @@ Preservar a marca Curupira Software, sua navegação institucional, o contato of
 ## Evidence on Hand
 
 - Landing institucional existente: `index.html` e `styles.css`.
-- Sites aprovados: `https://psilauraribeiro.com/` e `https://guilherme-paes-portfolio.winter-alisson.workers.dev/`.
+- Sites apresentados: `https://psilauraribeiro.com/`, `https://guilherme-paes-portfolio.winter-alisson.workers.dev/`, `https://viddaviagens.com.br/` e `https://rl-acessoria-juridica-site.winter-alisson.workers.dev/`.
 - As descrições factuais foram verificadas nas páginas públicas em 5 de outubro de 2026.
 
 ## Product Principles
