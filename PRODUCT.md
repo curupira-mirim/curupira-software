@@ -32,7 +32,7 @@ Preservar a marca Curupira Software, sua navegação institucional, o contato of
 ## Evidence on Hand
 
 - Landing institucional existente: `index.html` e `styles.css`.
-- Sites apresentados: `https://psilauraribeiro.com/`, `https://guilherme-paes-portfolio.winter-alisson.workers.dev/`, `https://viddaviagens.com.br/` e `https://rl-acessoria-juridica-site.winter-alisson.workers.dev/`.
+- Sites apresentados: `https://psilauraribeiro.com/`, `https://guilherme-paes-portfolio.winter-alisson.workers.dev/`, `https://viddaviagens.com.br/` e `https://rlacessoriajuridica.com.br/`.
 - As descrições factuais foram verificadas nas páginas públicas em 5 de outubro de 2026.
 
 ## Product Principles
